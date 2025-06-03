@@ -14,10 +14,6 @@ use std::{error::Error, io, time::Duration};
 
 fn main() -> Result<(), Box<dyn Error>> {
     // Setup terminal
-    // 1. enable raw mode
-    // 2. enter alternate screen
-    // 3. create a crossterm backend for ratatui to work with
-    // 4. creates a new terminal instance from the backend
     enable_raw_mode()?;
     let mut stdout = io::stdout();
     execute!(stdout, EnterAlternateScreen)?;
@@ -38,14 +34,14 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .constraints([
                     Constraint::Length(3), // Title
                     Constraint::Length(3), // Input prompt
-                    Constraint::Length(3), // Output result or instructions
-                    Constraint::Min(0),    // Flexible space for future (if any)
+                    Constraint::Length(3), // Output result || Instructions
+                    Constraint::Min(0),    // Flexible space for future
                     Constraint::Length(1), // Footer line
                 ].as_ref())
                 .split(size);
 
             // Title
-            let title = Paragraph::new("Temperature Converter")
+            let title: Paragraph<'_> = Paragraph::new("Temperature Converter")
                 .style(Style::default().fg(Color::Green));
             f.render_widget(title, chunks[0]);
 
@@ -74,7 +70,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .style(Style::default().fg(Color::DarkGray));
             f.render_widget(left_footer, footer_chunks[0]);
 
-            // Right footer: "Author: lordaimer" (aligned right)
+            // Right footer: "Author: lordaimer" (align right)
             let right_footer = Paragraph::new("Author: lordaimer")
                 .style(Style::default().fg(Color::DarkGray))
                 .alignment(ratatui::layout::Alignment::Right);
@@ -84,11 +80,12 @@ fn main() -> Result<(), Box<dyn Error>> {
         // Handle input events
         if event::poll(Duration::from_millis(100))? {
             if let Event::Key(key) = event::read()? {
+                // ignore repeats and releases on windows
                 #[cfg(windows)]
                 {
                     use crossterm::event::KeyEventKind;
                     if key.kind != KeyEventKind::Press {
-                        continue; // ignore repeats and releases
+                        continue;
                     }
                 }
                 match key.code {
