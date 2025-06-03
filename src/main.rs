@@ -84,6 +84,13 @@ fn main() -> Result<(), Box<dyn Error>> {
         // Handle input events
         if event::poll(Duration::from_millis(100))? {
             if let Event::Key(key) = event::read()? {
+                #[cfg(windows)]
+                {
+                    use crossterm::event::KeyEventKind;
+                    if key.kind != KeyEventKind::Press {
+                        continue; // ignore repeats and releases
+                    }
+                }
                 match key.code {
                     KeyCode::Char(c) => {
                         if c.is_digit(10) || c == '-' {
