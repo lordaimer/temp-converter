@@ -1,7 +1,9 @@
 [package]
 name = "temp-converter"
+authors = ["Arane Aimer"]
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
 ratatui = "0.29.0"

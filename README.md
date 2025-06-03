@@ -1,8 +1,8 @@
 # 🌡️ Simple Temperature Converter TUI
 
-> A terminal UI app to convert Farenheit to Celsius — built with [Ratatui](https://github.com/ratatui-org/ratatui)
+A terminal UI app to convert Farenheit to Celsius — built with [Ratatui](https://github.com/ratatui-org/ratatui)
 
-![License](https://img.shields.io/github/license/lordaimer/temp-converter?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
 
 ## 🎯 Objective
 
@@ -12,14 +12,13 @@ The goal of this project was to learn:
 - Input handling and layout rendering in terminal apps
 - Rust architecture patterns for real-time UIs
 
-## 📦 Features
+## 📦 Planned Features
 
 - ✅ Select source and target units
 - 🔁 Convert between:
   - Celsius ↔ Fahrenheit
   - Celsius ↔ Kelvin
   - Fahrenheit ↔ Kelvin
-- 📥 User-friendly input box with real-time feedback
 
 ## 🛠️ Build & Run
 
@@ -37,4 +36,4 @@ cargo run
 
 ## ✍🏻 Author
 
-- Arane Aimer - @lordaimer
+- 🐺 [Arane Aimer](https://github.com/lordaimer)
